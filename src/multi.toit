@@ -8,18 +8,18 @@ install-multi --services/List:
 class MultiProvider extends ServiceProvider
     implements PrintService ServiceHandler:
 
-  printServices/List
+  print-services/List
 
   constructor --services/List:
     // Make sure we have at least one type
     if services.size == 0:
       throw "No services provided"
-    // Make sure all services are PrintServices
+    // Make sure all services are print-services
     services.do: | service |
       if not service is PrintService:
         throw "Service is not a PrintService"
 
-    printServices = services
+    print-services = services
 
     super "system/print/pluggable/multi" --major=1 --minor=2
     provides PrintService.SELECTOR --handler=this
@@ -30,6 +30,6 @@ class MultiProvider extends ServiceProvider
 
   print message/string -> none:
     // Print to all the services..
-    printServices.do: | service |
+    print-services.do: | service |
       service.print message
 

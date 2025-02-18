@@ -6,11 +6,11 @@ import system
 import certificate-roots
 
 install-http --uri/string:
-  s := HTTPProvider --uri=uri
+  s := HttpProvider --uri=uri
   s.install
 
-// HTTPProvider is a PrintService that prints to HTTP requests.
-class HTTPProvider extends ServiceProvider
+// HttpProvider is a PrintService that prints to HTTP requests.
+class HttpProvider extends ServiceProvider
     implements PrintService ServiceHandler:
 
   client/http.Client

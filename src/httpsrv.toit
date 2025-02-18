@@ -8,22 +8,22 @@ import log
 import monitor
 
 install-http-server port/int=18018 buffer-size/int=10:
-  s := HTTPServerProvider --port=port --buffer-size=buffer-size
+  s := HttpServerProvider --port=port --buffer-size=buffer-size
   s.install
 
 // Hosts a small HTTP server that serves the print buffer
-class HTTPServerProvider extends ServiceProvider
+class HttpServerProvider extends ServiceProvider
     implements PrintService ServiceHandler:
 
-  srvPort /int
+  srv-port /int
   // Buffer for storing the recent prints
-  bufferedPrints /List
+  buffered-prints /List
   // Index of the oldest print in the buffer
-  startIndex /int := 0
+  start-index /int := 0
 
   constructor --port/int=18018 --buffer-size/int=10:
-    bufferedPrints = List buffer-size
-    srvPort = port
+    buffered-prints = List buffer-size
+    srv-port = port
 
     super "system/print/pluggable/httpsrv" --major=0 --minor=1
     provides PrintService.SELECTOR --handler=this
@@ -38,26 +38,26 @@ class HTTPServerProvider extends ServiceProvider
     addToBuffer message
 
   addToBuffer message/string -> none:
-    bufferedPrints[startIndex] = message
-    if startIndex == bufferedPrints.size - 1:
-      startIndex = 0
+    buffered-prints[start-index] = message
+    if start-index == buffered-prints.size - 1:
+      start-index = 0
     else:
-      startIndex = startIndex + 1
+      start-index = start-index + 1
 
   getBuffer -> List:
-    return (bufferedPrints[startIndex..bufferedPrints.size] + bufferedPrints[0..startIndex])
+    return (buffered-prints[start-index..buffered-prints.size] + buffered-prints[0..start-index])
 
   getAndClearBuffer -> List:
     l := getBuffer
-    startIndex = 0
-    bufferedPrints.fill null
+    start-index = 0
+    buffered-prints.fill null
     return l
 
   // Serve the print buffer on HTTP
   serveHttp:
-    log.debug "Starting log HTTP server on port $srvPort"
+    log.debug "Starting log HTTP server on port $srv-port"
     network := net.open
-    tcp_socket := network.tcp_listen srvPort
+    tcp_socket := network.tcp_listen srv-port
     // Only log INFO level server messages (especially as these come back through this log server..)
     server := http.Server --logger=(log.Logger log.INFO-LEVEL log.DefaultTarget) --max-tasks=4
     server.listen tcp_socket:: | request/http.RequestIncoming writer/http.ResponseWriter |
@@ -69,7 +69,7 @@ class HTTPServerProvider extends ServiceProvider
     function fl() {
         if (fetching) return;
         fetching = true;
-        fetch('http://$(network.address):$(srvPort)/get')
+        fetch('http://$(network.address):$(srv-port)/get')
         .then(r => r.text())
         .then(r => {
             const d = document.getElementById('l');

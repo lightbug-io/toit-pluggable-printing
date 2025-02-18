@@ -7,11 +7,11 @@ DEFAULT_PORT ::= 18018
 DEFAULT_MASK ::= "255.255.255.255"
 
 install-udp --port=DEFAULT_PORT --mask=DEFAULT_MASK:
-  s := UDPProvider --port=port --mask=mask
+  s := UdpProvider --port=port --mask=mask
   s.install
 
-// UDPProvider is a PrintService that prints to UDP packets.
-class UDPProvider extends ServiceProvider
+// UdpProvider is a PrintService that prints to UDP packets.
+class UdpProvider extends ServiceProvider
     implements PrintService ServiceHandler:
 
   address/net.SocketAddress

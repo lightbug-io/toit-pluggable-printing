@@ -36,8 +36,8 @@ import log
 
 main:
   pluggable-printing.install-multi --services=[
-    UDPProvider --port=18018,
-    HTTPServerProvider --port=18018 --buffer-size=10,
+    UdpProvider --port=18018,
+    HttpServerProvider --port=18018 --buffer-size=10,
   ]
   log.info "Starting"
 ```

@@ -4,24 +4,24 @@ import uart
 import gpio
 
 install-uart --port/uart.Port:
-  s := UARTProvider --port=port
+  s := UartProvider --port=port
   s.install
 
-// UARTProvider is a PrintService that prints over UART.
+// UartProvider is a PrintService that prints over UART.
 // Allows an existing UART port to be used.
-class UARTProvider extends ServiceProvider
+class UartProvider extends ServiceProvider
     implements PrintService ServiceHandler:
 
-  uartPort/uart.Port
-  stringPrefix/string
-  stringSuffix/string
+  uart-port/uart.Port
+  string-prefix/string
+  string-suffix/string
 
   constructor --port/uart.Port --prefix="" --suffix="\n":
-    stringPrefix = prefix
-    stringSuffix = suffix
+    string-prefix = prefix
+    string-suffix = suffix
     if port == null:
       // TODO maybe provide a different way of selecting defaults? OR just remove the default...
-      uartPort= uart.Port
+      uart-port= uart.Port
         // ESP32-C3 https://docs.espressif.com/projects/esp-at/en/latest/esp32c3/Get_Started/Hardware_connection.html#esp32-c3-series
         // UART0 GPIO20 (RX) GPIO21 (TX)
         // --rx=gpio.Pin 20
@@ -32,7 +32,7 @@ class UARTProvider extends ServiceProvider
         --tx=gpio.Pin 16
         --baud_rate=115200
     else:
-      uartPort = port
+      uart-port = port
 
     super "system/print/pluggable/uart" --major=0 --minor=1
     provides PrintService.SELECTOR --handler=this
@@ -42,4 +42,4 @@ class UARTProvider extends ServiceProvider
     unreachable
 
   print message/string -> none:
-    uartPort.out.write (stringPrefix + message + stringSuffix).to-byte-array
+    uart-port.out.write (string-prefix + message + string-suffix).to-byte-array
