@@ -12,3 +12,33 @@ Can target:
  - null: A service that does nothing
  - uart: Sends the output over UART
  - udp: Sends the output over UDP
+
+## Example usage
+
+And example running only the `udp` service.
+
+```toit
+
+import pluggable-printing.udp show installUDPPrintService
+import log
+
+main:
+  installUDPPrintService --port=18018
+  log.info "Starting"
+```
+
+An example running the `udp` and `httpsrv` services on ports `18018` port with a buffer size of 10 for the web server would look like this:
+
+```toit
+import pluggable-printing.multi show installMultiPrintService
+import silkworm.udp show UDPPrintServiceProvider
+import silkworm.httpsrv show HTTPPrintServerServiceProvider
+import log
+
+main:
+  installMultiPrintService --services=[
+    UDPPrintServiceProvider --port=18018,
+    HTTPPrintServerServiceProvider --port=18018 --buffer-size=10,
+  ]
+  log.info "Starting"
+```
