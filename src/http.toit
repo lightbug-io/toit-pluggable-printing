@@ -5,8 +5,7 @@ import net
 import system
 import certificate-roots
 
-// installHTTPPrintService installs the HTTPPrintServiceProvider.
-installHTTPPrintService --uri/string:
+install-http-print-service --uri/string:
   s := HTTPPrintServiceProvider --uri=uri
   s.install
 

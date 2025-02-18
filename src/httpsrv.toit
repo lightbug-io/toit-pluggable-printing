@@ -7,8 +7,7 @@ import system
 import log
 import monitor
 
-// installHTTPPrintService installs the HTTPPrintServiceProvider.
-installHTTPServerPrintService port/int=18018 buffer-size/int=10:
+install-http-server-print-service port/int=18018 buffer-size/int=10:
   s := HTTPPrintServerServiceProvider --port=port --buffer-size=buffer-size
   s.install
 

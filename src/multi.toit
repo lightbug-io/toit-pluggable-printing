@@ -1,8 +1,7 @@
 import system.services show ServiceProvider ServiceHandler
 import system.api.print show PrintService
 
-// installMultiPrintService installs the MultiPrintServiceProvider.
-installMultiPrintService --services/List:
+install-multi-print-service --services/List:
   s := MultiPrintServiceProvider --services=services
   s.install
 

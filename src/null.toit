@@ -1,8 +1,7 @@
 import system.services show ServiceProvider ServiceHandler
 import system.api.print show PrintService
 
-// installNullPrintService installs the NullPrintServiceProvider.
-installNullPrintService:
+install-null-print-service:
   s := NullPrintServiceProvider
   s.install
 

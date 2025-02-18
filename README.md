@@ -30,13 +30,13 @@ main:
 An example running the `udp` and `httpsrv` services on ports `18018` port with a buffer size of 10 for the web server would look like this:
 
 ```toit
-import pluggable-printing.multi show installMultiPrintService
+import pluggable-printing.multi show install-multi-print-service
 import silkworm.udp show UDPPrintServiceProvider
 import silkworm.httpsrv show HTTPPrintServerServiceProvider
 import log
 
 main:
-  installMultiPrintService --services=[
+  install-multi-print-service --services=[
     UDPPrintServiceProvider --port=18018,
     HTTPPrintServerServiceProvider --port=18018 --buffer-size=10,
   ]

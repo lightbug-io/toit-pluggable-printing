@@ -1,8 +1,7 @@
 import system.services show ServiceProvider ServiceHandler
 import system.api.print show PrintService
 
-// installDefaultPrintService installs the DefaultPrintServiceProvider.
-installDefaultPrintService:
+install-default-print-service:
   s := DefaultPrintServiceProvider
   s.install
 

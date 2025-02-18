@@ -6,8 +6,7 @@ import net.udp
 DEFAULT_PORT ::= 18018
 DEFAULT_MASK ::= "255.255.255.255"
 
-// installUDPPrintService installs the UDPPrintServiceProvider.
-installUDPPrintService --port=DEFAULT_PORT --mask=DEFAULT_MASK:
+install-udp-print-service --port=DEFAULT_PORT --mask=DEFAULT_MASK:
   s := UDPPrintServiceProvider --port=port --mask=mask
   s.install
 
