@@ -7,7 +7,7 @@ This package was mostly used during some initial hardware development phases whi
 Can target:
  - default: Calls `print_` which is what toit normally does
  - http: Sends the output over HTTP POST request
- - httpsrv: Hosts a web server displaying prints on a page
+ - httpsrv: Hosts a web server displaying prints on a page (See also `watchHttp.sh`)
  - multi: Can be used to combine multiple targets
  - nulled: A service that does nothing
  - uart: Sends the output over UART
