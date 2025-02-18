@@ -1,17 +1,17 @@
 import system.services show ServiceProvider ServiceHandler
 import system.api.print show PrintService
 
-install-null-print-service:
-  s := NullPrintServiceProvider
+install-null:
+  s := NullProvider
   s.install
 
-// NullPrintServiceProvider is a PrintService that does nothing.
+// NullProvider is a PrintService that does nothing.
 // This remove many messages from being printed to UART, however not everything.
 //
 // See https://discord.com/channels/918498540232253480/918498540232253483/1292782359648796684
 // The best way to remove all UART output is to "change the default console UART/pins using a custom envelope."
 // This is the "safest choice anyway as print_ bypasses the print-service. And error messages from the esp-idf aren't intercepted either"
-class NullPrintServiceProvider extends ServiceProvider
+class NullProvider extends ServiceProvider
     implements PrintService ServiceHandler:
 
   constructor:

@@ -1,11 +1,11 @@
 import system.services show ServiceProvider ServiceHandler
 import system.api.print show PrintService
 
-install-default-print-service:
-  s := DefaultPrintServiceProvider
+install-default:
+  s := DefaultProvider
   s.install
 
-class DefaultPrintServiceProvider extends ServiceProvider
+class DefaultProvider extends ServiceProvider
     implements PrintService ServiceHandler:
 
   constructor:

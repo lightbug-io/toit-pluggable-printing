@@ -7,12 +7,12 @@ import system
 import log
 import monitor
 
-install-http-server-print-service port/int=18018 buffer-size/int=10:
-  s := HTTPPrintServerServiceProvider --port=port --buffer-size=buffer-size
+install-http-server port/int=18018 buffer-size/int=10:
+  s := HTTPServerProvider --port=port --buffer-size=buffer-size
   s.install
 
 // Hosts a small HTTP server that serves the print buffer
-class HTTPPrintServerServiceProvider extends ServiceProvider
+class HTTPServerProvider extends ServiceProvider
     implements PrintService ServiceHandler:
 
   srvPort /int

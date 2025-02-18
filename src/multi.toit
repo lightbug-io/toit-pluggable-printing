@@ -1,11 +1,11 @@
 import system.services show ServiceProvider ServiceHandler
 import system.api.print show PrintService
 
-install-multi-print-service --services/List:
-  s := MultiPrintServiceProvider --services=services
+install-multi --services/List:
+  s := MultiProvider --services=services
   s.install
 
-class MultiPrintServiceProvider extends ServiceProvider
+class MultiProvider extends ServiceProvider
     implements PrintService ServiceHandler:
 
   printServices/List

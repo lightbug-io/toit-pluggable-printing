@@ -9,36 +9,35 @@ Can target:
  - http: Sends the output over HTTP POST request
  - httpsrv: Hosts a web server displaying prints on a page
  - multi: Can be used to combine multiple targets
- - null: A service that does nothing
+ - nulled: A service that does nothing
  - uart: Sends the output over UART
  - udp: Sends the output over UDP
 
 ## Example usage
 
+Checkout the `example` directory for runnable examples.
+
 And example running only the `udp` service.
 
 ```toit
-
-import pluggable-printing.udp show installUDPPrintService
+import pluggable-printing
 import log
 
 main:
-  installUDPPrintService --port=18018
+  pluggable-printing.install-udp --port=18018
   log.info "Starting"
 ```
 
 An example running the `udp` and `httpsrv` services on ports `18018` port with a buffer size of 10 for the web server would look like this:
 
 ```toit
-import pluggable-printing.multi show install-multi-print-service
-import silkworm.udp show UDPPrintServiceProvider
-import silkworm.httpsrv show HTTPPrintServerServiceProvider
+import pluggable-printing
 import log
 
 main:
-  install-multi-print-service --services=[
-    UDPPrintServiceProvider --port=18018,
-    HTTPPrintServerServiceProvider --port=18018 --buffer-size=10,
+  pluggable-printing.install-multi --services=[
+    UDPProvider --port=18018,
+    HTTPServerProvider --port=18018 --buffer-size=10,
   ]
   log.info "Starting"
 ```

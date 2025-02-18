@@ -3,13 +3,13 @@ import system.api.print show PrintService
 import uart
 import gpio
 
-install-uart-print-service --port/uart.Port:
-  s := UARTPrintServiceProvider --port=port
+install-uart --port/uart.Port:
+  s := UARTProvider --port=port
   s.install
 
-// UARTPrintServiceProvider is a PrintService that prints over UART.
+// UARTProvider is a PrintService that prints over UART.
 // Allows an existing UART port to be used.
-class UARTPrintServiceProvider extends ServiceProvider
+class UARTProvider extends ServiceProvider
     implements PrintService ServiceHandler:
 
   uartPort/uart.Port

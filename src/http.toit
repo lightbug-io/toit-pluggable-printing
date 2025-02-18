@@ -5,12 +5,12 @@ import net
 import system
 import certificate-roots
 
-install-http-print-service --uri/string:
-  s := HTTPPrintServiceProvider --uri=uri
+install-http --uri/string:
+  s := HTTPProvider --uri=uri
   s.install
 
-// HTTPPrintServiceProvider is a PrintService that prints to HTTP requests.
-class HTTPPrintServiceProvider extends ServiceProvider
+// HTTPProvider is a PrintService that prints to HTTP requests.
+class HTTPProvider extends ServiceProvider
     implements PrintService ServiceHandler:
 
   client/http.Client

@@ -1,0 +1,19 @@
+sdk: ^2.0.0-alpha.150
+prefixes:
+  pluggable-printing: ..
+packages:
+  ..:
+    path: ..
+    prefixes:
+      certificate_roots: toit-cert-roots
+      http: pkg-http
+  pkg-http:
+    url: github.com/toitlang/pkg-http
+    name: http
+    version: 2.8.0
+    hash: 81754d64fe466cd00cc494ec515da8749bf04975
+  toit-cert-roots:
+    url: github.com/toitware/toit-cert-roots
+    name: certificate-roots
+    version: 1.8.0
+    hash: 369a0b36e813e37d6248990de59964020644ab50

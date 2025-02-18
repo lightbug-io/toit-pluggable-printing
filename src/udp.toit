@@ -6,12 +6,12 @@ import net.udp
 DEFAULT_PORT ::= 18018
 DEFAULT_MASK ::= "255.255.255.255"
 
-install-udp-print-service --port=DEFAULT_PORT --mask=DEFAULT_MASK:
-  s := UDPPrintServiceProvider --port=port --mask=mask
+install-udp --port=DEFAULT_PORT --mask=DEFAULT_MASK:
+  s := UDPProvider --port=port --mask=mask
   s.install
 
-// UDPPrintServiceProvider is a PrintService that prints to UDP packets.
-class UDPPrintServiceProvider extends ServiceProvider
+// UDPProvider is a PrintService that prints to UDP packets.
+class UDPProvider extends ServiceProvider
     implements PrintService ServiceHandler:
 
   address/net.SocketAddress
