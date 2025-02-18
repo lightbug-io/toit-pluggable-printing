@@ -1,4 +1,4 @@
-name: pluggable-priting
+name: pluggable-printing
 description: Pluggable printing package for Toit by Lightbug.
 dependencies:
   certificate_roots:
