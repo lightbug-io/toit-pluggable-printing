@@ -3,7 +3,7 @@ description: Pluggable printing package for Toit by Lightbug.
 dependencies:
   certificate_roots:
     url: github.com/toitware/toit-cert-roots
-    version: ^1.6.1
+    version: ^1.12.0
   http:
     url: github.com/toitlang/pkg-http
     version: ^2.7.2
